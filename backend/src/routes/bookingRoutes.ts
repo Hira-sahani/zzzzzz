@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import * as bookingController from '../controllers/bookingController';
+import * as cleanerController from '../controllers/cleanerController';
+import * as ratingController from '../controllers/ratingController';
 import { authenticateToken } from '../middleware/auth';
-import { createBookingValidation } from '../middleware/validation';
+import { createBookingValidation, createRatingValidation } from '../middleware/validation';
 
 const router = Router();
 
@@ -19,5 +21,11 @@ router.get('/:id', bookingController.getBookingById);
 
 // PUT /api/v1/bookings/:id/cancel - Cancel booking
 router.put('/:id/cancel', bookingController.cancelBooking);
+
+// PUT /api/v1/bookings/:id/status - Update booking status (cleaner only)
+router.put('/:id/status', cleanerController.updateBookingStatus);
+
+// POST /api/v1/bookings/:id/rate - Rate booking
+router.post('/:id/rate', createRatingValidation, ratingController.rateBooking);
 
 export default router;
