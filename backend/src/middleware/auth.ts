@@ -87,7 +87,7 @@ export const generateToken = (userId: number, phone: string, userType: UserType)
 /**
  * Optional authentication - attaches user if token exists but doesn't require it
  */
-export const optionalAuth = (req: Request, res: Response, next: NextFunction): void => {
+export const optionalAuth = (req: Request, _res: Response, next: NextFunction): void => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
