@@ -80,8 +80,8 @@ export const generateToken = (userId: number, phone: string, userType: UserType)
     userType
   };
 
-  const expiry = process.env.JWT_EXPIRY || '30d';
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: expiry });
+  const expiry: string | number = process.env.JWT_EXPIRY || '30d';
+  return jwt.sign(payload, JWT_SECRET, { expiresIn: expiry } as jwt.SignOptions);
 };
 
 /**
