@@ -118,11 +118,11 @@ export const updateAvailabilityValidation = [
   body('isAvailable')
     .isBoolean().withMessage('isAvailable must be boolean'),
   body('latitude')
-    .if(body('isAvailable').equals(true))
+    .if(body('isAvailable').equals('true' as any))
     .notEmpty().withMessage('Latitude required when setting available')
     .isFloat({ min: -90, max: 90 }).withMessage('Invalid latitude'),
   body('longitude')
-    .if(body('isAvailable').equals(true))
+    .if(body('isAvailable').equals('true' as any))
     .notEmpty().withMessage('Longitude required when setting available')
     .isFloat({ min: -180, max: 180 }).withMessage('Invalid longitude'),
   validate
